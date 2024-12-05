@@ -2,6 +2,7 @@
 
 int main()
 {
-	Bureaucrat bureauRat;
+	Bureaucrat bureauRat("bureauRat", -900);
+
 	std::cout << "HAHA!\n";
 }

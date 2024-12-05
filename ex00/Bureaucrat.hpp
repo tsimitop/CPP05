@@ -8,31 +8,31 @@ class Bureaucrat
 {
 private:
 	const std::string	_name;
-	unsigned short		_grade;
+	int					_grade;
 public:
 	Bureaucrat();
-	Bureaucrat(std::string name, unsigned short n);
+	Bureaucrat(std::string name, int n);
 	Bureaucrat(const Bureaucrat& other);
 	Bureaucrat& operator=(const Bureaucrat& other);
 	~Bureaucrat();
 
 	std::string		getName() const;
-	unsigned short	getGrade() const;
+	int	getGrade() const;
 
 	class	GradeTooHighException : public std::exception
 	{
 		public:
-			virtual const char* what() const throw();
+			virtual const char* what() const noexcept;
 	};
 
 	class	GradeTooLowException : public std::exception
 	{
 		public:
-			virtual const char* what() const throw();
+			virtual const char* what() const noexcept;
 	};
 
-	void	decrementGrade(unsigned short n);
-	void	incrementGrade(unsigned short n);
+	void	decrementGrade();
+	void	incrementGrade();
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
