@@ -4,6 +4,8 @@
 #include <iostream>
 #include <exception>
 
+class Form;
+
 class Bureaucrat
 {
 private:
@@ -33,6 +35,9 @@ public:
 
 	void	decrementGrade();
 	void	incrementGrade();
+	void	signForm(Form form);
+
+	void	printStatus();
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);

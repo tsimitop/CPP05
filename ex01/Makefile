@@ -2,11 +2,11 @@ NAME = exec
 
 CC = c++
 
-CFLAGS = -Wall -Werror -Wextra -std=c++17
+CFLAGS = -Wall -Werror -Wextra -std=c++17 -fsanitize=address
 
 DEBUG = -g
 
-SRCS = Bureaucrat.cpp main.cpp
+SRCS = Bureaucrat.cpp main.cpp Form.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
