@@ -1,7 +1,7 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-Bureaucrat::Bureaucrat() :_grade(1), _name("Default")
+Bureaucrat::Bureaucrat() : _name("Default"), _grade(1)
 {
 	std::cout << "Bureaucrat: Constructor called\n";
 }
@@ -9,21 +9,14 @@ Bureaucrat::Bureaucrat() :_grade(1), _name("Default")
 Bureaucrat::Bureaucrat(std::string name, int n) : _name(name)
 {
 	std::cout << "Bureaucrat: Parameterized constructor called\n";
-	// try
-	// {
-		if (n < 1)
-			throw GradeTooHighException();
-		if (n > 150)
-			throw GradeTooLowException();
-		_grade = n;
-	// }
-	// catch(const std::exception& e)
-	// {
-	// 	std::cerr << e.what();
-	// }
+	if (n < 1)
+		throw GradeTooHighException();
+	if (n > 150)
+		throw GradeTooLowException();
+	_grade = n;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& other) : _grade(other._grade), _name(other._name)
+Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other._name), _grade(other._grade)
 {
 	std::cout << "Bureaucrat: Copy constructor called\n";
 }
@@ -64,30 +57,16 @@ const char*	Bureaucrat::GradeTooLowException::what() const noexcept
 
 void	Bureaucrat::decrementGrade()
 {
-	// try
-	// {
-		if (_grade++ > 150)
-			throw Bureaucrat::GradeTooLowException();
-		_grade++;
-	// }
-	// catch(const std::exception& e)
-	// {
-	// 	std::cerr << e.what() << '\n';
-	// }
+	if (_grade++ > 150)
+		throw Bureaucrat::GradeTooLowException();
+	_grade++;
 }
 
 void	Bureaucrat::incrementGrade()
 {
-	// try
-	// {
-		if (_grade-- < 1)
-			throw Bureaucrat::GradeTooHighException();
-		_grade--;
-	// }
-	// catch(const std::exception& e)
-	// {
-	// 	std::cerr << e.what() << '\n';
-	// }
+	if (_grade-- < 1)
+		throw Bureaucrat::GradeTooHighException();
+	_grade--;
 }
 
 void	Bureaucrat::signForm(Form form)
