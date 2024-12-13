@@ -36,6 +36,12 @@ public:
 			virtual const char* what() const noexcept;
 	};
 
+	class	FormIsNotSigned : public std::exception
+	{
+		public:
+			virtual const char* what() const noexcept;
+	};
+
 	virtual void	execute(Bureaucrat const & executor) const = 0;
 
 	void	printStatus();

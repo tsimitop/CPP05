@@ -9,13 +9,13 @@ int main()
 	try
 	{
 		std::cout << "\n------------------------BUREAUCRAT CONSTRUCTION------------------------\n";
-		Bureaucrat	highRank("highRank", 1);
-		Bureaucrat	lowRank("lowRank", 20);
-		Bureaucrat	unacceptableRank("unacceptableRank", 150);
+		Bureaucrat	highRank("highRank", 5);
+		Bureaucrat	lowRank("lowRank", 5);
+		Bureaucrat	unacceptableRank("unacceptableRank", 5);
 
-		// highRank.printStatus();
-		// lowRank.printStatus();
-		// unacceptableRank.printStatus();
+		highRank.printStatus();
+		lowRank.printStatus();
+		unacceptableRank.printStatus();
 		std::cout << "\n----------------------------FORM CONSTRUCTION--------------------------\n";
 
 		PresidentialPardonForm		application;
@@ -28,13 +28,13 @@ int main()
 		application1.printStatus();
 		application2.printStatus();
 		std::cout << "\n---------------------------------SIGNING-------------------------------\n";
-		// application.beSigned(highRank);
-		// application1.beSigned(lowRank);
-		// application2.beSigned(unacceptableRank);
+		application.beSigned(highRank);
+		application1.beSigned(lowRank);
+		application2.beSigned(unacceptableRank);
 
-		// application.printStatus();
-		// application1.printStatus();
-		// application2.printStatus();
+		application.printStatus();
+		application1.printStatus();
+		application2.printStatus();
 
 		// highRank.signForm(application);
 		// lowRank.signForm(application1);
