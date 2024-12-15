@@ -1,56 +1,34 @@
 #include "Bureaucrat.hpp"
-// #include "AForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "Intern.hpp"
+
+
+static void	execution();
+static void	signing();
+// static void testCase(Bureaucrat &b, AForm &a, Intern &i)
+static void testCase(int buro, int sign, int exec, std::string name, std::string target)
+{
+	Bureaucrat b;
+	// AForm a;
+	Intern i;
+}
 
 int main()
 {
+		std::cout << "\nBUREAUCRAT OUT OF BOUNDS - TOO HIGH\n";
+
+		std::cout << "\nBUREAUCRAT OUT OF BOUNDS - TOO LOW\n";
+
+		std::cout << "\nCAN'T SIGN FORM\n";
+
+		std::cout << "\nCAN'T EXECUTE FORM\n";
+
+		std::cout << "\nCAN'T CREATE FORM\n";
 	try
 	{
-		std::cout << "\n------------------------BUREAUCRAT CONSTRUCTION------------------------\n";
-		Bureaucrat	highRank("highRank", 5);
-		Bureaucrat	lowRank("lowRank", 5);
-		Bureaucrat	unacceptableRank("unacceptableRank", 24);
 
-		highRank.printStatus();
-		lowRank.printStatus();
-		unacceptableRank.printStatus();
-		std::cout << "\n----------------------------FORM CONSTRUCTION--------------------------\n";
-
-		PresidentialPardonForm		application;
-		RobotomyRequestForm			application1;
-		ShrubberyCreationForm		application2;
-
-		std::cout << std::endl;
-
-		application.printStatus();
-		application1.printStatus();
-		application2.printStatus();
-		std::cout << "\n---------------------------------SIGNING-------------------------------\n";
-		application.beSigned(highRank);
-		application1.beSigned(lowRank);
-		application2.beSigned(unacceptableRank);
-
-		application.printStatus();
-		application1.printStatus();
-		application2.printStatus();
-
-		// highRank.signForm(application);
-		// lowRank.signForm(application1);
-		// unacceptableRank.signForm(application2);
-		std::cout << "\n--------------------------------EXECUTOR-------------------------------\n";
-		// application.execute(highRank);
-		// application1.execute(lowRank);
-		// application2.execute(unacceptableRank);
-
-		std::cout << std::endl;
-
-		highRank.executeForm(application);
-		lowRank.executeForm(application1);
-		unacceptableRank.executeForm(application2);
-
-		std::cout << "\n-------------------------------DESTRUCTION-----------------------------\n";
 	}
 	catch(const std::exception& e)
 	{

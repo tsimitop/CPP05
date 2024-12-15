@@ -7,7 +7,7 @@ CFLAGS = -Wall -Werror -Wextra -std=c++17
 DEBUG = -g
 
 SRCS = Bureaucrat.cpp main.cpp AForm.cpp PresidentialPardonForm.cpp \
-		RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
+		RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Intern.cpp
 
 OBJ_DIR = objects
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.cpp=.o))
