@@ -12,3 +12,8 @@ Informs that <target> has been pardoned by Zaphod Beeblebrox.
 
 All of them take only one parameter in their constructor: the target of the form. For
 example, "home" if you want to plant shrubbery at home.
+
+Lastly, add the executeForm(AForm const & form) member function to the Bureaucrat.
+It must attempt to execute the form. If it’s successful, print something like:
+<bureaucrat> executed <form>
+If not, print an explicit error message.

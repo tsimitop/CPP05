@@ -91,3 +91,12 @@ void	Bureaucrat::printStatus()
 	std::cout << "Name: " << _name << \
 	" _grade: " << _grade << std::endl;
 }
+
+void	Bureaucrat::executeForm(AForm const & aform)
+{
+	if(aform.getSigned() == false || this->getGrade() > aform.getExecGrade())
+		std::cout << this->_name << " did NOT EXECUTE " << aform.getName() << std::endl;
+	else
+		std::cout << this->_name << " executed " << aform.getName() << std::endl;
+	aform.execute(*this);
+}

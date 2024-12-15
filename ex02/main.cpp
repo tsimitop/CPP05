@@ -11,7 +11,7 @@ int main()
 		std::cout << "\n------------------------BUREAUCRAT CONSTRUCTION------------------------\n";
 		Bureaucrat	highRank("highRank", 5);
 		Bureaucrat	lowRank("lowRank", 5);
-		Bureaucrat	unacceptableRank("unacceptableRank", 5);
+		Bureaucrat	unacceptableRank("unacceptableRank", 24);
 
 		highRank.printStatus();
 		lowRank.printStatus();
@@ -40,9 +40,16 @@ int main()
 		// lowRank.signForm(application1);
 		// unacceptableRank.signForm(application2);
 		std::cout << "\n--------------------------------EXECUTOR-------------------------------\n";
-		application.execute(highRank);
-		application1.execute(lowRank);
-		application2.execute(unacceptableRank);
+		// application.execute(highRank);
+		// application1.execute(lowRank);
+		// application2.execute(unacceptableRank);
+
+		std::cout << std::endl;
+
+		highRank.executeForm(application);
+		lowRank.executeForm(application1);
+		unacceptableRank.executeForm(application2);
+
 		std::cout << "\n-------------------------------DESTRUCTION-----------------------------\n";
 	}
 	catch(const std::exception& e)
