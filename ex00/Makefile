@@ -2,7 +2,7 @@ NAME = exec
 
 CC = c++
 
-CFLAGS = -Wall -Werror -Wextra -std=c++17
+CFLAGS = -Wall -Werror -Wextra -std=c++17 #-fsanitize=address
 
 DEBUG = -g
 
@@ -17,6 +17,7 @@ $(NAME) : $(OBJS)
 	$(CC) $(DEBUG) $(CFLAGS) -c $< -o $@
 
 all : $(NAME)
+#	@g++ --version
 
 clean :
 	@echo Deleting objects...

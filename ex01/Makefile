@@ -17,6 +17,7 @@ $(NAME) : $(OBJS)
 	$(CC) $(DEBUG) $(CFLAGS) -c $< -o $@
 
 all : $(NAME)
+# @echo g++ --version
 
 clean :
 	@echo Deleting objects...

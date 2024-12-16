@@ -8,6 +8,10 @@ AForm::AForm() : _name("Default"), _signed(false), _signGrade(20), _execGrade(10
 AForm::AForm(std::string name, int signGrade, int execGrade) : _name(name), _signed(false), _signGrade(signGrade), _execGrade(execGrade)
 {
 	// std::cout << "AForm: Parameterized constuctor called\n";
+	if (signGrade < 1 || execGrade < 1)
+		throw AForm::GradeTooHighException();
+	if (signGrade > 150 || execGrade > 150)
+		throw AForm::GradeTooLowException();
 }
 
 AForm::AForm(const AForm& other) : _name(other._name), _signed(other._signed), _signGrade(other._signGrade), _execGrade(other._execGrade)
@@ -51,11 +55,6 @@ int	AForm::getExecGrade() const
 
 void	AForm::beSigned(Bureaucrat& bureaucrat)
 {
-	if(bureaucrat.getGrade() > this->getSignGrade())
-	{
-		std::cout << _name << std::endl;
-		throw AForm::GradeTooLowException();
-	}
 	if(bureaucrat.getGrade() <= this->getSignGrade())
 		_signed = true;
 }

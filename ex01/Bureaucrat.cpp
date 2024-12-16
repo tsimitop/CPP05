@@ -3,12 +3,12 @@
 
 Bureaucrat::Bureaucrat() : _name("Default"), _grade(1)
 {
-	std::cout << "Bureaucrat: Constructor called\n";
+	// std::cout << "Bureaucrat: Constructor called\n";
 }
 
 Bureaucrat::Bureaucrat(std::string name, int n) : _name(name)
 {
-	std::cout << "Bureaucrat: Parameterized constructor called\n";
+	// std::cout << "Bureaucrat: Parameterized constructor called\n";
 	if (n < 1)
 		throw GradeTooHighException();
 	if (n > 150)
@@ -18,12 +18,12 @@ Bureaucrat::Bureaucrat(std::string name, int n) : _name(name)
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other._name), _grade(other._grade)
 {
-	std::cout << "Bureaucrat: Copy constructor called\n";
+	// std::cout << "Bureaucrat: Copy constructor called\n";
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 {
-	std::cout << "Bureaucrat: Copy assignement operator called\n";
+	// std::cout << "Bureaucrat: Copy assignement operator called\n";
 	if (this == &other)
 		return (*this);
 	this->_grade = other._grade;
@@ -32,7 +32,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Bureaucrat: Destructor called\n";
+	// std::cout << "Bureaucrat: Destructor called\n";
 }
 
 std::string		Bureaucrat::getName() const
@@ -45,12 +45,12 @@ int	Bureaucrat::getGrade() const
 	return (this->_grade);
 }
 
-const char*	Bureaucrat::GradeTooHighException::what() const noexcept
+const char*	Bureaucrat::GradeTooHighException::what() const throw()
 {
 	return ("EXCEPTION-Bureaucrat: Grade is too high!\n");
 }
 
-const char*	Bureaucrat::GradeTooLowException::what() const noexcept
+const char*	Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return ("EXCEPTION-Bureaucrat: Grade is too low!\n");
 }
@@ -69,13 +69,13 @@ void	Bureaucrat::incrementGrade()
 	_grade--;
 }
 
-void	Bureaucrat::signForm(Form form)
+void	Bureaucrat::signForm(Form& form)
 {
 	if(form.getSigned() == true)
 		std::cout << _name << " signed " << form.getName() << std::endl;
 	else
 	{
-		std::cout << this->_name << " couldn’t sign " << form.getName() << " because\n";
+		std::cout << this->_name << " couldn't sign " << form.getName() << " because\n";
 		std::cout << "\tGrade of bureaucrat["<< this->getGrade() <<"] not high enough ["<< form.getSignGrade() <<"] to be signed\n";
 	}
 }

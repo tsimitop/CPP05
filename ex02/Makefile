@@ -21,6 +21,7 @@ $(OBJ_DIR)/%.o: %.cpp
 	@$(CC) $(DEBUG) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
+#	@g++ --version
 
 clean:
 	@echo Deleting objects...

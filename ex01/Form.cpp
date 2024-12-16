@@ -2,17 +2,26 @@
 
 Form::Form() : _name("Default"), _signed(false), _signGrade(20), _execGrade(10)
 {
-	std::cout << "Form: Default constuctor called\n";
+	// std::cout << "Form: Default constuctor called\n";
+}
+
+Form::Form(std::string name, int signGrade, int execGrade) : _name(name), _signed(false), _signGrade(signGrade), _execGrade(execGrade)
+{
+	// std::cout << "Form: Parameterized constuctor called\n";
+	if (signGrade < 1 || execGrade < 1)
+		throw Form::GradeTooHighException();
+	if (signGrade > 150 || execGrade > 150)
+		throw Form::GradeTooLowException();
 }
 
 Form::Form(const Form& other) : _name(other._name), _signed(other._signed), _signGrade(other._signGrade), _execGrade(other._execGrade)
 {
-	std::cout << "Form: Copy constructor called\n";
+	// std::cout << "Form: Copy constructor called\n";
 }
 
 Form& Form::operator=(const Form& other)
 {
-	std::cout << "Form: Copy assignement operator called\n";
+	// std::cout << "Form: Copy assignement operator called\n";
 	if (this == &other)
 		return (*this);
 	this->_signed = other._signed;
@@ -21,7 +30,7 @@ Form& Form::operator=(const Form& other)
 
 Form::~Form()
 {
-	std::cout << "Form: Destuctor called\n";
+	// std::cout << "Form: Destuctor called\n";
 }
 
 std::string	Form::getName() const
@@ -46,21 +55,16 @@ int	Form::getExecGrade() const
 
 void	Form::beSigned(Bureaucrat& bureaucrat)
 {
-	if(bureaucrat.getGrade() >= this->getSignGrade())
-	{
-		std::cout << _name << std::endl;
-		throw Form::GradeTooLowException();
-	}
-	else if(bureaucrat.getGrade() <= this->getSignGrade())
+	if(bureaucrat.getGrade() <= this->getSignGrade())
 		_signed = true;
 }
 
-const char*	Form::GradeTooHighException::what() const noexcept
+const char*	Form::GradeTooHighException::what() const throw()
 {
 	return ("EXCEPTION-Form: Grade is too high!\n");
 }
 
-const char*	Form::GradeTooLowException::what() const noexcept
+const char*	Form::GradeTooLowException::what() const throw()
 {
 	return ("EXCEPTION-Form: Grade is too low!\n");
 }
