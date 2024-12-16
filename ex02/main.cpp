@@ -1,60 +1,55 @@
 #include "Bureaucrat.hpp"
-// #include "AForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 
-int main()
+static void testCase(AForm* form, int buro)
 {
 	try
 	{
-		std::cout << "\n------------------------BUREAUCRAT CONSTRUCTION------------------------\n";
-		Bureaucrat	highRank("highRank", 5);
-		Bureaucrat	lowRank("lowRank", 5);
-		Bureaucrat	unacceptableRank("unacceptableRank", 24);
+		Bureaucrat	BurocRat("BurocRat", buro);
 
-		highRank.printStatus();
-		lowRank.printStatus();
-		unacceptableRank.printStatus();
-		std::cout << "\n----------------------------FORM CONSTRUCTION--------------------------\n";
-
-		PresidentialPardonForm		application;
-		RobotomyRequestForm			application1;
-		ShrubberyCreationForm		application2;
-
-		std::cout << std::endl;
-
-		application.printStatus();
-		application1.printStatus();
-		application2.printStatus();
-		std::cout << "\n---------------------------------SIGNING-------------------------------\n";
-		application.beSigned(highRank);
-		application1.beSigned(lowRank);
-		application2.beSigned(unacceptableRank);
-
-		application.printStatus();
-		application1.printStatus();
-		application2.printStatus();
-
-		// highRank.signForm(application);
-		// lowRank.signForm(application1);
-		// unacceptableRank.signForm(application2);
-		std::cout << "\n--------------------------------EXECUTOR-------------------------------\n";
-		// application.execute(highRank);
-		// application1.execute(lowRank);
-		// application2.execute(unacceptableRank);
-
-		std::cout << std::endl;
-
-		highRank.executeForm(application);
-		lowRank.executeForm(application1);
-		unacceptableRank.executeForm(application2);
-
-		std::cout << "\n-------------------------------DESTRUCTION-----------------------------\n";
+		form->beSigned(BurocRat);
+		BurocRat.executeForm(*form);
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what();
 	}
-	return (0);	
+}
+
+int main()
+{
+	PresidentialPardonForm	Presidential;
+	RobotomyRequestForm		Robotomy;
+	ShrubberyCreationForm	Shrubbery;
+
+	std::cout << "\n__________________ONLY EXCEPTIONS__________________\n";
+
+	std::cout << "\nBUREAUCRAT OUT OF BOUNDS - TOO LOW\n";
+	testCase(&Presidential, 151);
+
+	std::cout << "\nBUREAUCRAT OUT OF BOUNDS - TOO HIGH\n";
+	testCase(&Robotomy, 0);
+
+	std::cout << "\nCAN'T SIGN FORM\n";
+	testCase(&Shrubbery, 145);
+
+	std::cout << "\nCAN'T EXECUTE FORM\n";
+	testCase(&Presidential, 138);
+
+	std::cout << "\n___________________NO EXCEPTIONS___________________\n";
+
+	std::cout << "\nBUREAUCRAT IN BOUNDS\n";
+	testCase(&Presidential, 150); // WON'T BE SIGNED BUT BUREAUCRAT IS CREATED
+
+	std::cout << "\nBUREAUCRAT IN BOUNDS\n";
+	testCase(&Robotomy, 1);
+
+	std::cout << "\nFORM GETS SIGNED\n";
+	testCase(&Shrubbery, 25);
+
+	std::cout << "\nFORM GETS EXECUTED\n";
+	testCase(&Presidential, 137);
+	return (0);
 }

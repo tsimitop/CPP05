@@ -51,12 +51,12 @@ int	AForm::getExecGrade() const
 
 void	AForm::beSigned(Bureaucrat& bureaucrat)
 {
-	if(bureaucrat.getGrade() >= this->getSignGrade())
+	if(bureaucrat.getGrade() > this->getSignGrade())
 	{
 		std::cout << _name << std::endl;
 		throw AForm::GradeTooLowException();
 	}
-	else if(bureaucrat.getGrade() <= this->getSignGrade())
+	if(bureaucrat.getGrade() <= this->getSignGrade())
 		_signed = true;
 }
 
