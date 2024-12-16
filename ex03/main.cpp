@@ -4,35 +4,50 @@
 #include "ShrubberyCreationForm.hpp"
 #include "Intern.hpp"
 
+// void leak(void)
+// {
+// 	system("leaks exec");
+// }
 
-static void	execution();
-static void	signing();
-// static void testCase(Bureaucrat &b, AForm &a, Intern &i)
-static void testCase(int buro, int sign, int exec, std::string name, std::string target)
+static void testCase(int buro, std::string name, std::string target)
 {
-	Bureaucrat b;
-	// AForm a;
-	Intern i;
+	AForm*	form = NULL;
+	Intern	i;
+
+	try
+	{
+		Bureaucrat	b(target+"_Crat", buro);
+
+		form = i.makeForm(name, target);
+		form->beSigned(b);
+		b.executeForm(*form);
+		delete form;
+	}
+	catch(const std::exception& e)
+	{
+		if(form)
+			delete form;
+		std::cerr << e.what();
+	}
 }
 
 int main()
 {
-		std::cout << "\nBUREAUCRAT OUT OF BOUNDS - TOO HIGH\n";
+	// atexit(&leak);
 
-		std::cout << "\nBUREAUCRAT OUT OF BOUNDS - TOO LOW\n";
+	std::cout << "\nBUREAUCRAT OUT OF BOUNDS - TOO LOW\n";
+	testCase(151, "RobotomyRequest", "TOO-HIGH");
 
-		std::cout << "\nCAN'T SIGN FORM\n";
+	std::cout << "\nBUREAUCRAT OUT OF BOUNDS - TOO HIGH\n";
+	testCase(0, "ShrubberyCreation", "TOO-LOW");
 
-		std::cout << "\nCAN'T EXECUTE FORM\n";
+	std::cout << "\nCAN'T SIGN FORM\n";
+	testCase(145, "PresidentialPardon", "CAN'T_SIGN");
 
-		std::cout << "\nCAN'T CREATE FORM\n";
-	try
-	{
+	std::cout << "\nCAN'T EXECUTE FORM\n";
+	testCase(138, "RobotomyRequest", "CAN'T_EXECUTE");
 
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what();
-	}
-	return (0);	
+	std::cout << "\nCAN'T CREATE FORM\n";
+	testCase(138, "OtherName", "HOME");
+	return (0);
 }

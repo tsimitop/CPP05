@@ -56,14 +56,3 @@ void ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 		throw GradeTooLowException();
 	this->action();
 }
-/*
-• ShrubberyCreationForm: Required grades: sign 145, exec 137
-Create a file <target>_shrubbery in the working directory, and writes ASCII trees
-inside it.
-*/
-
-	//empties filename.replace
-	// std::ofstream tempFile(filenameReplaced, std::ios::trunc);
-	// if(!tempFile)
-	// 	std::cout << argv[1] << ": tempFile failed to open" << std::endl;
-	// tempFile.close();

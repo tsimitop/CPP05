@@ -47,8 +47,3 @@ void PresidentialPardonForm::execute(const Bureaucrat& executor) const
 		throw GradeTooLowException();
 	this->action();
 }
-
-/*
-• PresidentialPardonForm: Required grades: sign 25, exec 5
-Informs that <target> has been pardoned by Zaphod Beeblebrox.
-*/
